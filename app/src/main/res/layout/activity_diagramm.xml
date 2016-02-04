@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Since"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout android:id="@+id/chart" android:orientation="horizontal"
+        android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/gallery"
+        android:layout_below="@+id/Since">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/gallery"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/gallery2"
+        android:layout_toEndOf="@+id/gallery2">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/descr"
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Gallery
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/gallery2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chart" />
+
+    <Gallery
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/gallery"
+        android:layout_gravity="center_vertical"
+        android:layout_centerInParent="true" />
+
+
+</RelativeLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/map" tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="WhereAmI vBeta"
+        android:id="@+id/textView"
+        android:longClickable="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SecActButton"
+        android:id="@+id/button"
+        android:clickable="true"
+        android:enabled="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/AddLocation" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Location"
+        android:id="@+id/AddLocation"
+        android:onClick="AddLocation"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/Start"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/AddDone"
+        android:onClick="AddingLocationComplete"
+        android:layout_above="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/AddLocation"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Areas"
+        android:id="@+id/ShowArea"
+        android:onClick="ShowHideAreas"
+        android:nestedScrollingEnabled="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/AddLocation"
+        android:layout_alignRight="@+id/Start"
+        android:layout_alignEnd="@+id/Start"
+        android:layout_below="@+id/AddDone" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/Cancel"
+        android:layout_above="@+id/AddDone"
+        android:layout_alignRight="@+id/AddDone"
+        android:layout_alignEnd="@+id/AddDone"
+        android:layout_alignLeft="@+id/AddDone"
+        android:layout_alignStart="@+id/AddDone"
+        android:onClick="CancelButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Record"
+        android:id="@+id/Start"
+        android:layout_above="@+id/ShowArea"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="StartRecord" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish Record"
+        android:id="@+id/Close"
+        android:layout_above="@+id/Start"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="CloseRecord" />
+
+
+</RelativeLayout>

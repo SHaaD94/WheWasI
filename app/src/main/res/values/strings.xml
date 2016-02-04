@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WhereAmI</string>
+    <string name="title_activity_maps">WhereAmI</string>
+    <string name="title_activity_sec">Statistics</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="secActivity">SecAct</string>
+    <string name="SecActButton">Statistics</string>
+    <string name="MenuButton">Menu</string>
+    <string name="DelLocationBase">ClearLocationTable</string>
+    <string name="DelMovementBase">ClearMovementTable</string>
+    <string name="title_activity_stat">StatActivity</string>
+
+    <string name="title_activity_diagram">Diagram</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_diagramm">Diagram</string>
+
+</resources>
