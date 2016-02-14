@@ -61,6 +61,11 @@ public class Diagramm extends ActionBarActivity {
         Colors.add(Color.parseColor("#DECF3F"));
         Colors.add(Color.parseColor("#F15854"));
 
+        while (StatTable.size() >= Colors.size()) {
+            Random rnd = new Random();
+            Colors.add(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
+        }
+
 
         linear.addView(new MyGraphview(this));
 
