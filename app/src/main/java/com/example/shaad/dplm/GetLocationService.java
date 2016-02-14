@@ -41,11 +41,11 @@ public class GetLocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("myLog","onCreate");
+        Log.d("myLog", "onCreate");
     }
 
     @Override
-    public void onTaskRemoved(Intent rootIntent){
+    public void onTaskRemoved(Intent rootIntent) {
         Intent restartServiceIntent = new Intent(getApplicationContext(), this.getClass());
         restartServiceIntent.setPackage(getPackageName());
 
@@ -60,25 +60,24 @@ public class GetLocationService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
-        Log.d("myLog","onStartCommand");
-        super.onStartCommand(intent,flags,startId);
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("myLog", "onStartCommand");
+        super.onStartCommand(intent, flags, startId);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         listener = new MyLocationListener();
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
 
-        Notification note=new Notification(R.drawable.ic_launcher,
+        Notification note = new Notification(R.drawable.ic_launcher,
                 "WhereAmI",
                 System.currentTimeMillis());
-        Intent i=new Intent(this, MapsActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+        Intent i = new Intent(this, MapsActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pi=PendingIntent.getActivity(this, 0,
+        PendingIntent pi = PendingIntent.getActivity(this, 0,
                 i, 0);
-        note.setLatestEventInfo(this, "Service is running","getting current location",pi);
-        note.flags|=Notification.FLAG_NO_CLEAR;
+        note.setLatestEventInfo(this, "Service is running", "getting current location", pi);
+        note.flags |= Notification.FLAG_NO_CLEAR;
         startForeground(1337, note);
 
         return START_STICKY;
@@ -99,39 +98,22 @@ public class GetLocationService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.v("STOP_SERVICE", "DONE");
-        //locationManager.removeUpdates(listener);
     }
 
-    public static Thread performOnBackgroundThread(final Runnable runnable) {
-        final Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    runnable.run();
-                } finally {
-
-                }
-            }
-        };
-        t.start();
-        return t;
-    }
-
-    public class MyLocationListener implements LocationListener
-    {
+    public class MyLocationListener implements LocationListener {
         public void onLocationChanged(final Location location) {
             dbHelper = new DataBase(GetLocationService.this);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues cv = new ContentValues();
 
             long time = System.currentTimeMillis();
-            Date LastDate = new Date();
-            Date CurrentDate = new Date (time);
+
+            Date CurrentDate = new Date(time);
 
             Cursor c = db.query("mytable1", null, null, null, null, null, null);
 
             if (c.moveToLast()) {
-                LastDate = new Date(c.getLong(c.getColumnIndex("created_at")));
+                Date LastDate = new Date(c.getLong(c.getColumnIndex("created_at")));
 
                 if (!(CurrentDate.getHours() == LastDate.getHours() && LastDate.getMinutes() == CurrentDate.getMinutes())) {
                     cv.put("created_at", time);
@@ -150,18 +132,15 @@ public class GetLocationService extends Service {
             dbHelper.close();
         }
 
-        public void onProviderDisabled(String provider)
-        {
+        public void onProviderDisabled(String provider) {
             //  Toast.makeText(getApplicationContext(), "Gps Disabled", Toast.LENGTH_SHORT).show();
         }
 
-        public void onProviderEnabled(String provider)
-        {
+        public void onProviderEnabled(String provider) {
             //Toast.makeText( getApplicationContext(), "Gps Enabled", Toast.LENGTH_SHORT).show();
         }
 
-        public void onStatusChanged(String provider, int status, Bundle extras)
-        {
+        public void onStatusChanged(String provider, int status, Bundle extras) {
 
         }
     }

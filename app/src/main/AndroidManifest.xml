@@ -41,7 +41,6 @@
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,7 +49,7 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".secActivity"
+            android:name=".StatActivity"
             android:label="@string/title_activity_sec" >
         </activity>
 
@@ -62,16 +61,16 @@
             android:process=":GetLocationService" >
         </service>
 
-        <activity
+    <!--    <activity
             android:name=".StatActivity"
             android:label="@string/title_activity_stat" >
-        </activity>
-        <activity
-            android:name=".Diagram"
+        </activity>-->
+        <!--<activity
+            android:name=".Diagramm"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_diagram"
             android:theme="@style/FullscreenTheme" >
-        </activity>
+        </activity>-->
         <activity
             android:name=".Diagramm"
             android:label="@string/title_activity_diagramm" >

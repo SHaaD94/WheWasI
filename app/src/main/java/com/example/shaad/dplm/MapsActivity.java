@@ -90,7 +90,7 @@ public class MapsActivity extends FragmentActivity implements
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
 
-        Shape = new String();
+        Shape = "";
 
         MarkerCircle.clear();
         MarkerPolygon.clear();
@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements
         OnClickListener SAB = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MapsActivity.this, secActivity.class);
+                Intent myIntent = new Intent(MapsActivity.this, StatActivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
                 MapsActivity.this.startActivity(myIntent);
             }
@@ -128,8 +128,8 @@ public class MapsActivity extends FragmentActivity implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(5 * 1000)        // 10 seconds, in milliseconds
-                .setFastestInterval(1 * 1000); // 1 second, in milliseconds
+                .setInterval(5 * 1000)
+                .setFastestInterval(1 * 1000);
 
         mMap.setOnMapClickListener(this);
         mMap.setOnMapLongClickListener(this);
@@ -225,8 +225,7 @@ public class MapsActivity extends FragmentActivity implements
         int totalPoints = points.size();
         centroid[0] = centroid[0] / totalPoints;
         centroid[1] = centroid[1] / totalPoints;
-        LatLng center = new LatLng(centroid[0], centroid[1]);
-        return center;
+        return new LatLng(centroid[0], centroid[1]);
     }
 
     @Override
@@ -436,8 +435,6 @@ public class MapsActivity extends FragmentActivity implements
 
     private void RemoveLocation(Marker marker) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        //marker.setVisible(false);
         marker.remove();
         if (MarkerPolygon.containsKey(marker)) {
             MarkerPolygon.get(marker).setVisible(false);
@@ -726,24 +723,20 @@ public class MapsActivity extends FragmentActivity implements
         return false;
     }
 
-    // http://startandroid.ru/ru/uroki/vse-uroki-spiskom/74-urok-34-hranenie-dannyh-sqlite
     public static class DataBase extends SQLiteOpenHelper {
         private static final String LOG_TAG = "my logs";
 
         public DataBase(Context context) {
-            // конструктор суперкласса
             super(context, "DB", null, 3);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             Log.d(LOG_TAG, "--- onCreate database ---");
-            // создаем таблицу с полями
             db.execSQL("create table mytable1 ("
                     + "id integer primary key autoincrement,"
                     + "created_at DATETIME DEFAULT CURRENT_TIMESTAMP,"
