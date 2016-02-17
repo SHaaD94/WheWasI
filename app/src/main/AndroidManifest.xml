@@ -72,7 +72,7 @@
             android:theme="@style/FullscreenTheme" >
         </activity>-->
         <activity
-            android:name=".Diagramm"
+            android:name=".Diagram"
             android:label="@string/title_activity_diagramm" >
         </activity>
     </application>
